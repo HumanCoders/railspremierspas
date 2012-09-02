@@ -1,60 +1,104 @@
 ---
 layout: default
 title: Installez Ruby on Rails
-permalink: install.html
+permalink: install
 ---
 
-# Installez Ruby on Rails
+# Installer Ruby on Rails
 
 Avant de construire vos applications avec Ruby on Rails, vous devez installer quelques bibliothèques sur votre machine.
 
 Suivez les instructions en fonction de votre environnement.
 
 * [Installation sur OS X](#installation_sur_os_x)
+* [Installation sur OS X (Ancienne méthode)](#installation_sur_os_x_old)
 * [Installation sur Windows](#installation_sur_windows)
 * [Installation sur Ubuntu](#installation_sur_ubuntu)
 
 <hr />
 
 ## Installation sur OS X
+**Étape 1.** Ouvrez Terminal.app. Ouvrez Spotlight (l'icône loupe dans le coin en haut à droite de l'écran), tapez *Terminal.app* et cliquez sur l'option affichée.
 
+![Spotlight](/images/3.png "Spotlight")
+
+**Étape 2.** Puis copiez cette ligne de texte dans le Terminal et valider avec Entrée.
+
+{% highlight console %}
+bash < <(curl -s https://raw.github.com/railsgirls/installation-scripts/master/rails-install-osx.sh)
+{% endhighlight %}
+
+Ci-dessous un exemple de ce que vous devriez voir après quelques secondes.
+
+{% highlight console %}
+Downloading Tokaido.app
+######################################################################## 100.0%
+Setting up Tokaido.app
+
+- - - - - - - - -
+
+Now we are going to print some information to check that everything is done:
+
+ ,;;;, ,;;;,
+;;;' ';' ';;; Should be ruby 1.9.3p194: ruby 1.9.3p194
+;;;       ;;;
+ ';;,   ,;;'  Should be Rails 3.2.3: Rails 3.2.3
+   ';;,;;'
+     ';'
+
+- - - - - - - - -
+
+Done!
+Please restart your terminal.
+{% endhighlight %}
+
+Si tout s'est bien passé, vous avez juste à ouvrir un nouveau Terminal et vous devriez avoir un environnement de développement en état de marche. Bien joué !
+
+Vous aurez aussi besoin d'un éditeur de code pour programmer, pour cela nous recommandons Komodo Edit.
+
+* [Télécharger Komodo Edit et l'installer](http://www.activestate.com/komodo-edit/downloads)
+
+<hr />
+
+## Installation sur OS X Old
+ 
 Tout d'abord vous avez besoin d'installer quelques bibliothèques avant de pouvoir installer Ruby.
 
-**Etape 1.** Vérifiez la version de votre système d'exploitation
+**Étape 1.** Vérifiez la version de votre système d'exploitation
 
-Cliquez sur le menu Apple et choisissez "A propos de ce mac" (Image 1)
+Cliquez sur le menu Apple et choisissez "A propos de ce Mac" (Image 1)
 
-![Menu Apple](./images/1.png "Menu Apple")
+![Menu Apple](/images/1.png "Menu Apple")
 
 Image 1
         
-**Etape 2.** Dans le fenêtre vous trouverez la version de votre système d'exploitation (Image 2). Si votre numéro de version démarre par 10.6 ou 10.7, ce guide est pour vous. Sinon, commencez par mettre à jour votre système d'exploitation
+**Étape 2.** Dans le fenêtre vous trouverez la version de votre système d'exploitation (Image 2). Si votre numéro de version démarre par 10.6 ou 10.7, ce guide est pour vous. Sinon, commencez par mettre à jour votre système d'exploitation
 
-![A propos de la boîte de dialogue Mac](./images/2.png "A propos de la boîte de dialogue Mac")
+![A propos de la boîte de dialogue Mac](/images/2.png "A propos de la boîte de dialogue Mac")
 
 Image 2
  
-**Etape 3.** Téléchargez et installez ces outils de développement pour Mac OS X en fonction de numéro de version de votre système.
+**Étape 3.** Téléchargez et installez ces outils de développement pour Mac OS X en fonction de numéro de version de votre système.
  
 * [Installeur for 10.7](https://github.com/downloads/kennethreitz/osx-gcc-installer/GCC-10.7-v2.pkg) <span class="muted">(273Mb)</span>
  
 * [Installeur for 10.6](https://github.com/downloads/kennethreitz/osx-gcc-installer/GCC-10.6.pkg) <span class="muted">(273Mb)</span>
 
-**Etape 4.** Après avoir lancé l'installeur, ouvrez Terminal.app. Ouvrez Spotlight (l'icône loupe dans le coin en haut à droite de l'écran), tapez *Terminal.app* et cliquez sur l'option affichée (Image 3).
+**Étape 4.** Après avoir lancé l'installeur, ouvrez Terminal.app. Ouvrez Spotlight (l'icône loupe dans le coin en haut à droite de l'écran), tapez *Terminal.app* et cliquez sur l'option affichée (Image 3).
 
-![Spotlight](images/3.png "Spotlight")
+![Spotlight](/images/3.png "Spotlight")
 
 Image 3
  
-**Etape 5.** A présent, copiez-collez cette line dans le Terminal et appuyez sur Entrée. Admirez le texte qui défile sur votre écran. Cela peut prendre un certain temps (environs 30 minutes). L'installeur peut vous demander votre mot de passe administrateur. Prendre une boisson raffraichissante avant de commencer est recommandé !
+**Étape 5.** A présent, copiez-collez cette line dans le Terminal et appuyez sur Entrée. Admirez le texte qui défile sur votre écran. Cela peut prendre un certain temps (environs 30 minutes). L'installeur peut vous demander votre mot de passe administrateur. Prendre une boisson rafraîchissante avant de commencer est recommandé&nbsp;!
 
-{% highlight sh %}
-bash < <(curl -s https://raw.github.com/railsgirls/installation-scripts/master/rails-install-osx.sh)
+{% highlight console %}
+bash < <(curl -s https://raw.github.com/railsgirls/installation-scripts/master/rails-install-osx-rvm.sh)
 {% endhighlight %} 
         
- ![Vous l'avez fait](images/complete.png "Vous l'avez fait")
+ ![Vous l'avez fait](/images/complete.png "Vous l'avez fait")
 
-Maintenant, si tout est bon, vous devriez avoir un environnement de développement Ruby on Rails qui marche. Félicitation !
+Maintenant, si tout est bon, vous devriez avoir un environnement de développement Ruby on Rails qui marche. Félicitations !
         
 **Dernière étape.** Installer un éditeur de texte pour éditer les fichiers. Pour commencer, nous vous recommendons Komodo Edit (éditeur gratuit)
 
@@ -76,14 +120,14 @@ Maintenant, si tout est bon, vous devriez avoir un environnement de développeme
 
 ## Installation sur Ubuntu
 
-Pour installer l'environnement Ruby on Rails, vous avez juste à copier-coller cette ligne dans le Terminal et presser Entrée. Admirez le texte qui défile sur votre écran. Cela peut prendre un certain temps (environs 30 minutes). Prendre une boisson raffraichissante avant de commencer est recommandé !
+Pour installer l'environnement Ruby on Rails, vous avez juste à copier-coller cette ligne dans le Terminal et presser Entrée. Admirez le texte qui défile sur votre écran. Cela peut prendre un certain temps (environs 30 minutes). Prendre une boisson rafraîchissante avant de commencer est recommandé !
  
-{% highlight sh %}
+{% highlight console %}
 bash < <(curl -s https://raw.github.com/railsgirls/installation-scripts/master/rails-install-ubuntu.sh)
-{% endhighlight %} 
+{% endhighlight %}
 
 Vous aurez aussi besoin d'installer un éditeur de texte pour éditer les fichiers. Pour commencer, nous vous recommendons Komodo Edit (éditeur gratuit)
 
 * [Télécharger Komodo Edit et l'installer](http://www.activestate.com/komodo-edit/downloads)
 
-Maintenant, si tout est bon, vous devriez avoir un environnement de développement Ruby on Rails qui marche. Félicitation !
+Maintenant, si tout est bon, vous devriez avoir un environnement de développement Ruby on Rails qui marche. Félicitations !

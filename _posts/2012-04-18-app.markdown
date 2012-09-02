@@ -1,24 +1,23 @@
 ---
 layout: default
 title: Développez votre application
-permalink: app.html
+permalink: app
 ---
 
 # Développez votre application
 
 *Créé par Vesa Vänskä, [@vesan](https://twitter.com/vesan)*
-      
-[**Installez Rails**](./install)
+
+[**Premièrement, installez Ruby on Rails en suivant ce guide.**](/install)
 
 
-## 0: Prenez connaissance des outils
+## Étape 0: Étudier les outils
 
-* L'éditeur de texte (Komodo Edit) pour écrire du code et éditer les fichiers
-* Terminal / Ligne de commande pour démarrer le serveur Rails et lancer des commandes
-* Le navigateur web pour visualiser vos applications
+* Éditeurs de code / Éditeur de texte : gedit, vim, emacs, Komodo, Sublime Text, Textmate sont des examples d'éditeurs que vous pouvez utiliser pour écrire du code et éditer des fichiers.
+* Terminal / Ligne de commande : exécuter des commandes pour par example démarrer le server Rails.
+* Navigateur web (Firefox, Safari, Chrome) : pour afficher votre application.
 
-
-## 1: Créer l'application
+## Étape 1: Créer l'application
 
 Vous allez créer une application appelée railsgirls.
 
@@ -37,14 +36,17 @@ cd railsgirls
 rails s
 {% endhighlight %}
 
-Ouvrez [http://localhost:3000/ideas](http://localhost:3000/ideas) dans votre navigateur.
+Ouvrez [http://localhost:3000](http://localhost:3000) dans votre navigateur.
 
 CTRL-C pour quitter le serveur dans le Terminal/Ligne de commande.
 
+**Coach:** Expliquez chaque commande. Qu'est ce qui a été généré ? Comment marche le serveur ? Un mot à propos de MVC.
 
-## 2: Créer le scaffold Idea
+## Étape 2: Créer le scaffold Idea
 
 Vous allez utiliser les scaffolds de Rails pour générer un point de départ qui vous permettra de lister, ajouter, supprimer, éditer et voir des choses ; dans notre cas, des idées (Idea).
+
+**Coach:** Qu'est-ce qu'un scaffold : (échafaudage, les fondations d'un immeuble) la commande, le nom des modèles et des tables, les conventions de nommage, les attributs et les types de données. Que sont les migrations, et quand en a t'on besoin ? Pourquoi ?
 
 {% highlight sh %}
 rails generate scaffold idea name:string description:text picture:string
@@ -52,19 +54,20 @@ rake db:migrate
 rails s
 {% endhighlight %}
 
-Ouvrez [http://localhost:3000](http://localhost:3000) dans votre navigateur.
+Ouvrez [http://localhost:3000/ideas](http://localhost:3000/ideas) dans votre navigateur.
 
-CTRL-C pour quitter le serveur une fois que vous avez cliqué un peu partout.
+Ctrl+C arrête le serveur quand vous avez fini de jouer avec.
 
+## Étape 3: Design
 
-## 3: Design
+**Coach:** Parlez de la relation entre HTML et Rails, quelles parties des vues sont HTML et lesquelles sont du Ruby (ERB)? Quel est le rapport avec MVC ?
 
 Le design n'est pas très beau. Essayons de faire quelque chose pour changer ça. Nous utiliserons le projet Twitter Bootstrap pour mettre un style par défaut plus joli facilement.
 
 Ouvrez app/views/layouts/application.html.erb et ajouter au-dessus de
 
 {% highlight erb %}
-<%= stylesheet_link_tag "application", :media => "all" %>
+<%= stylesheet_link_tag "application" %>
 {% endhighlight %}
 
 la ligne
@@ -87,7 +90,8 @@ par
 </div>
 {% endhighlight %}
 
-Ajoutez la barre de menu et le footer à la page et stylez-les.
+Let&#8217;s also add topbar and footer to the layout and style those and the ideas table.
+Ajoutez la barre de menu et le footer à la page et stylez-les, ainsi que la table des idées.
 
 
 Dans application.html.erb sous `<body>` ajoutez :
@@ -132,11 +136,11 @@ td.picture { width: 140px; }
 td.picture img { width: 140px; }
 {% endhighlight %}
 
+**Coach:** Parlez un peu des layouts et de CSS.
 
-## 4: Ajout de l'upload d'images
+## Étape 4: Ajout de l'upload d'images
 
-Vous avez besoin d'installer une bibliothèque pour l'upload d'image.
-
+Vous avez besoin d'installer une bibliothèque pour charger les images.
 
 Ouvrez Gemfile dans le projet et ajoutez
 
@@ -150,7 +154,10 @@ sous
 gem 'sqlite3'
 {% endhighlight %}
 
-Maintenant, générez le code pour nécessaire à l'upload les images. Dans le Terminal/Ligne de commande, lancez :
+**Coach:** Tell what libraries are and why they are used. Maybe few words about Open Source?
+**Coach:** Quelles sont les bibliothèques utilisées et pourquoi sont elles utilisées ? Parler de l'Open Source.
+
+Maintenant, générez le code nécessaire à l'upload des images. Dans le Terminal/Ligne de commande, lancez :
 
 {% highlight sh %}
 bundle
@@ -207,6 +214,7 @@ par
 <%= image_tag(@idea.picture_url, :width => 600) if @idea.picture.present? %>
 {% endhighlight %}
 
+**Coach:** un mot sur HTML.
 
 ## 5: Modifiez les routes
 
@@ -230,16 +238,16 @@ Enfin, ouvrez config/routes.rb et ajoutez à la seconde ligne du fichier :
 root :to => redirect("/ideas")
 {% endhighlight %}
 
-
 ## Allez plus loin
 
 * Ajoutez un design en utilisant HTML et CSS
 * Ajoutez la possibiliter de voter
 * Utilisez CoffeeScript (ou JavaScript) pour ajouter des interactions
 * Ajouter un redimensionnement d'image pour qu'elles chargent plus vite
-      
+
 
 ## Guides additionnels
 
 * GUIDE 1: [Déployez votre application sur Heroku par Terence Lee](./heroku)
 * GUIDE 2: [Ajoutez des commentaires par Janika Liiv](http://janikaliiv.eu/homework/) (en)
+* GUIDE 3: [Build a map of workshop participants by Rails Girls Berlin](http://blog.railsgirlsberlin.de/apptutorial/) (en)

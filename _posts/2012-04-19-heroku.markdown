@@ -1,22 +1,42 @@
 ---
 layout: default
-title: Déployez l'application
-permalink: heroku.html
+title: Déployez l'application avec Heroku
+permalink: heroku
 ---
 
-# Déployez l'application
+# Déployez l'application avec Heroku
 
 *Créé par Terence Lee, [@hone02](https://twitter.com/hone02)*
 
-### Installez Heroku
+## Installez Heroku
 
-Suivez les étapes 1, 2 et 3 du [quickstart guide](https://devcenter.heroku.com/articles/quickstart) pour vous enregistrer, installer la toolbelt et vous connecter.
+__COACH__: Parler des avantages d'Heroku par rapport aux serveurs traditionnels.
 
-### Préparez l'application
+Premièrement, [inscrivez-vous sur Heroku](https://api.heroku.com/signup/).
 
-#### Mettez à jour la base de données
+Ensuite, installez la [Heroku Toolbelt](https://toolbelt.heroku.com/) (boîte à outils pour Heroku) sur votre système.
 
-Tout d'abord, vous devez faire fonctionner la base de données, qui utilise une base différente. Veuillez remplacer les points suivants dans le Gemfile :
+Si l'installation s'est bien passée, vous devriez avoir accès à la commande `heroku` dans votre terminal. Authentifiez-vous avec l'email et le mot de passe de votre compte Heroku en tapant `heroku login`:
+
+{% highlight console %}
+Enter your Heroku credentials.
+Email: adam@example.com
+Password: 
+Could not find an existing public key.
+Would you like to generate one? [Yn] Y
+Generating new SSH public key.
+Uploading ssh public key /Users/adam/.ssh/id_rsa.pub
+{% endhighlight %}
+
+Un mot sur les clés SSH : elles permettent de vous identifier au serveur de manière plus sécurisée qu'avec un mot de passe, pour transférer les fichiers. Heroku peut en créer une pour vous et l'ajouter dans votre compte. Si vous en avez déjà une, utilisez `heroku keys:add`.
+
+<p class="muted">traduit d'après le <a href="https://devcenter.heroku.com/articles/quickstart">quickstart guide</a> d'Heroku. (en)</p>
+
+## Préparez l'application
+
+### Mettez à jour la base de données
+
+Tout d'abord, changez le type de base de données pour celle utilisée sur Heroku.  Remplacez les lignes suivantes dans le Gemfile :
 
 {% highlight ruby %}
 gem 'sqlite3'
@@ -33,26 +53,30 @@ group :production do
 end
 {% endhighlight %}
 
-Lancez `bundle install --without production` pour configurer les dépendances.
+Lancez `bundle install --without production` pour re-configurer les dépendances.
 
-#### Système de contrôle de versions
+__COACH__: vous pouvez introduire les concepts des bases de données et leurs différences ainsi que les concepts d'environnements de développement.
 
-Vous devez versionner votre code grâce à un système de contrôle de versions. Vous pouvez le faire en exécutant les commandes dans le terminal :
+### Système de contrôle de versions
 
-{% highlight sh %}
+Vous devez versionner votre code grâce à un système de contrôle de versions. Vous pouvez le faire en exécutant ces commandes dans le terminal :
+
+{% highlight console %}
 git init
 git add .
 git commit -m "initial commit"
 {% endhighlight %}
 
+__COACH__: expliquez un peu git et les systèmes de gestion de version.
 
-### Déployez votre application
+## Déployez votre application
 
-#### Création de l'app
+### Création de l'app
 
-Vous devez créer l'app Heroku en tapant `heroku create --stack cedar` dans le terminal et vous devriez voir le texte suivant s'afficher :
+Vous devez créer l'app Heroku en tapant `heroku create` dans le terminal et vous devriez voir le texte suivant s'afficher :
 
-{% highlight sh %}
+
+{% highlight console %}
 Creating evening-sky-7498... done, stack is cedar
 http://evening-sky-7498.herokuapp.com/ | git@heroku.com:evening-sky-7498.git
 Git remote heroku added
@@ -60,11 +84,11 @@ Git remote heroku added
 
 Dans ce cas  "evening-sky-7498" est le nom de votre app.
 
-#### Pusher le code
+### Pusher le code
 
 Ensuite, vous devez pusher le code sur Heroku en tapant `git push heroku master`. Vous devriez voir le texte suivant s'afficher :
 
-{% highlight sh %}
+{% highlight console %}
 Counting objects: 134, done.
 Delta compression using up to 4 threads.
 Compressing objects: 100% (115/115), done.
@@ -83,9 +107,11 @@ Total 134 (delta 26), reused 0 (delta 0)
 
 Vous saurez que l'application a été pushé lorsque vous verez le texte "Launching..." comme ci-dessus.
 
-#### Migration de la base de données
+### Migration de la base de données
 
-Enfin, vous devez migrer la base de données comme vous l'avez fait localement précédement : `heroku run rake db:migrate`
+Enfin, vous devez migrer la base de données sur le serveur, comme vous l'avez fait précédement en local :
+
+`heroku run rake db:migrate`
 
 Quand cette commande a fini de s'exécuter, vous pouvez voir votre application en ligne. Dans cet exemple, vous pouvez aller sur [http://evening-sky-7498.herokuapp.com/](http://evening-sky-7498.herokuapp.com). Vous pouvez aussi taper `heroku open` dans le terminal pour ouvrir directement la page.
 
