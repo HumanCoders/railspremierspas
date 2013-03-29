@@ -52,7 +52,7 @@ a {
 
 a:hover {
   color:#E0330C;
-  text-decoration:underline;  
+  text-decoration:underline;
 }
 
 hr {
@@ -69,7 +69,6 @@ header {
 }
 
 header #logo {
-  width:610px;
   float:left;
   font-size: 40px;
   color: white;
@@ -85,7 +84,7 @@ nav {
 }
 
 nav a {
-  color:#fff; 
+  color:#fff;
   text-decoration:none;
   font-weight:300;
   font-size:20px;
